@@ -183,7 +183,7 @@ class MyHomePage extends ConsumerWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                CustomizableSnackbar.hide(ref: ref);
+                CustomizableSnackbar.hideFirst(ref: ref);
               },
               child: const Text('Hide First Snackbar'),
             ),

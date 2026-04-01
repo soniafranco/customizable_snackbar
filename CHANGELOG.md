@@ -5,24 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.2] - 2025-01-27
-
-- Updated minimum `flutter_riverpod` version from `2.6.1` to `2.8.0` for full pub.dev compatibility
-- Updated minimum `riverpod_annotation` version from `2.6.1` to `2.8.0` for full pub.dev compatibility
-- Updated minimum `riverpod_generator` version from `2.3.0` to `2.8.0` for full pub.dev compatibility
-  
 ## [1.1.1] - 2025-01-27
+
+### Changed
 
 - Optimized dependency version constraints for better pub.dev scoring and backward compatibility
 - Updated `flutter_lints` to support both 5.x and 6.x versions
 
 ## [1.1.0] - 2025-01-27
 
+### Changed
+
 - Updated dependencies and analysis options
 - Refactored snackbar queue provider for improved readability and structure
 - Improved code formatting and comments in snackbar widgets
 
-## [1.0.0] - 2024-11-06
+## [1.0.0] - 2025-11-06
 
 ### Added
 

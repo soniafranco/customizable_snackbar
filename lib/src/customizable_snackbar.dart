@@ -21,17 +21,21 @@ class CustomizableSnackbar {
   ///
   /// The [builder] function is called to build the snackbar widget.
   /// If [ref] is provided, it will be used instead of the global ref.
-  static void add({required WidgetBuilder builder, WidgetRef? ref}) {
+  static void add({
+    required WidgetBuilder builder,
+    WidgetRef? ref,
+    String? id,
+  }) {
     final snackbarQueue = ref ?? _ref;
-    snackbarQueue?.read(snackbarQueueProvider.notifier).add(builder);
+    snackbarQueue?.read(snackbarQueueProvider.notifier).add(builder, id: id);
   }
 
-  /// Hides the first visible snackbar in the queue.
+  /// Hides a specific visible snackbar in the queue by its ID.
   ///
   /// If [ref] is provided, it will be used instead of the global ref.
-  static void hide({WidgetRef? ref}) {
+  static void hide({required String id, WidgetRef? ref}) {
     final snackbarQueue = ref ?? _ref;
-    snackbarQueue?.read(snackbarQueueProvider.notifier).hideFirst();
+    snackbarQueue?.read(snackbarQueueProvider.notifier).hide(id);
   }
 
   /// Dismisses a specific snackbar by its ID.
