@@ -1,3 +1,4 @@
+import 'package:customizable_snackbar/customizable_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -5,15 +6,6 @@ import 'package:uuid/uuid.dart';
 
 part 'snackbar_queue_provider.freezed.dart';
 part 'snackbar_queue_provider.g.dart';
-
-/// The action to take to remove a snackbar from the queue.
-enum SnackbarExitAction {
-  /// The snackbar will be dismissed.
-  dismiss,
-
-  /// The snackbar will be hidden.
-  hide,
-}
 
 /// A snackbar queue entry.
 @freezed

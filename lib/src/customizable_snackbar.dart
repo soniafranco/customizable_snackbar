@@ -2,6 +2,15 @@ import 'package:customizable_snackbar/src/providers/snackbar_queue_provider.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// The action to take to remove a snackbar from the queue.
+enum SnackbarExitAction {
+  /// The snackbar will be dismissed.
+  dismiss,
+
+  /// The snackbar will be hidden.
+  hide,
+}
+
 /// A class for managing customizable snackbars.
 ///
 /// This class provides static methods to add, hide, and dismiss snackbars
