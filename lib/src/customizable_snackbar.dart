@@ -25,14 +25,9 @@ class CustomizableSnackbar {
     required WidgetBuilder builder,
     WidgetRef? ref,
     String? id,
-    SnackbarExitAction exitAction = SnackbarExitAction.dismiss,
   }) {
     final snackbarQueue = ref ?? _ref;
-    snackbarQueue?.read(snackbarQueueProvider.notifier).add(
-          builder,
-          id: id,
-          exitAction: exitAction,
-        );
+    snackbarQueue?.read(snackbarQueueProvider.notifier).add(builder, id: id);
   }
 
   /// Hides a specific visible snackbar in the queue by its ID.
