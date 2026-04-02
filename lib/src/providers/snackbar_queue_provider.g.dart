@@ -6,7 +6,7 @@ part of 'snackbar_queue_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$snackbarQueueHash() => r'9735b6b2491191566ce2c0382c78633a61b3b735';
+String _$snackbarQueueHash() => r'dd5e89fc6528339ac16764db7df2d57f74769b4f';
 
 /// Provider that manages the snackbar queue.
 ///

@@ -148,6 +148,7 @@ class SnackbarQueue extends _$SnackbarQueue {
 
     final newQueue = List<SnackbarQueueEntry>.from(state.queue);
     newQueue[indexOfItemToDismiss] = newQueue[indexOfItemToDismiss].copyWith(
+      isVisible: false,
       isDismissed: true,
     );
     state = state.copyWith(queue: newQueue);
@@ -162,6 +163,7 @@ class SnackbarQueue extends _$SnackbarQueue {
 
     final newQueue = List<SnackbarQueueEntry>.from(state.queue);
     newQueue[indexOfItemToDismiss] = newQueue[indexOfItemToDismiss].copyWith(
+      isVisible: false,
       isDismissed: true,
     );
     state = state.copyWith(queue: newQueue);
