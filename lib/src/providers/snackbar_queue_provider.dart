@@ -6,6 +6,15 @@ import 'package:uuid/uuid.dart';
 part 'snackbar_queue_provider.freezed.dart';
 part 'snackbar_queue_provider.g.dart';
 
+/// The action to take to remove a snackbar from the queue.
+enum SnackbarExitAction {
+  /// The snackbar will be dismissed.
+  dismiss,
+
+  /// The snackbar will be hidden.
+  hide,
+}
+
 /// A snackbar queue entry.
 @freezed
 abstract class SnackbarQueueEntry with _$SnackbarQueueEntry {
@@ -54,15 +63,26 @@ class SnackbarQueue extends _$SnackbarQueue {
   }
 
   /// Adds a new snackbar to the queue.
-  void add(WidgetBuilder builder, {String? id}) {
+  // ignore: lines_longer_than_80_chars
+  void add(WidgetBuilder builder, {String? id, SnackbarExitAction exitAction = SnackbarExitAction.dismiss}) {
+    void exitFirst(SnackbarExitAction exitAction) {
+      switch (exitAction) {
+        case SnackbarExitAction.dismiss:
+          dismissFirst();
+        case SnackbarExitAction.hide:
+          hideFirst();
+      }
+    }
+
     _cleanQueueIfNeeded();
+
     final visibleQueue = state.queue
         .where(
           (element) => element.isVisible,
         )
         .toList();
     if (visibleQueue.length >= kMaxQueueSize) {
-      hideFirst();
+      exitFirst(exitAction);
     }
     final newQueue = List<SnackbarQueueEntry>.from(state.queue)
       ..add(
@@ -74,7 +94,10 @@ class SnackbarQueue extends _$SnackbarQueue {
         ),
       );
     state = state.copyWith(queue: newQueue);
-    Future.delayed(const Duration(milliseconds: 5000), hideFirst);
+    Future.delayed(
+      const Duration(milliseconds: 5000),
+      () => exitFirst(exitAction),
+    );
   }
 
   String _getNewId() {
@@ -120,6 +143,20 @@ class SnackbarQueue extends _$SnackbarQueue {
   void dismiss(String id) {
     final indexOfItemToDismiss = state.queue.indexWhere(
       (element) => element.id == id,
+    );
+    if (indexOfItemToDismiss == -1) return;
+
+    final newQueue = List<SnackbarQueueEntry>.from(state.queue);
+    newQueue[indexOfItemToDismiss] = newQueue[indexOfItemToDismiss].copyWith(
+      isDismissed: true,
+    );
+    state = state.copyWith(queue: newQueue);
+  }
+
+  /// Dismisses the first visible snackbar in the queue.
+  void dismissFirst() {
+    final indexOfItemToDismiss = state.queue.indexWhere(
+      (element) => element.isVisible,
     );
     if (indexOfItemToDismiss == -1) return;
 
